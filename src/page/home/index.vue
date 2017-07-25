@@ -2,7 +2,7 @@
 	<div>
 	<head-bar></head-bar>
 	<head-list></head-list>
-	<div class="banner"></div>
+	<swiper></swiper>
 	<div class="home_list">
 		<ul class="clearfloat">
 			<li>
@@ -78,11 +78,13 @@
 <script>
 	import headBar from '../../components/head.vue'
 	import headList from '../../components/head_list.vue'
+	import Swiper from './sliper.vue'
 	export default{
 		name:'home',
 		components:{
 			headBar,
-			headList
+			headList,
+			Swiper
 		}
 	}
 </script>

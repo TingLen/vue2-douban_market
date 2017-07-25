@@ -8,11 +8,10 @@ const mine=r=>require.ensure([],()=>r(require('../page/mine')),'mine')
 const detail=r=>require.ensure([],()=>r(require('../page/detail')),'detail')
 const list=r=>require.ensure([],()=>r(require('../page/list')),'list')
 export default[
-{
-	path:'/',
-	component:App,
-	children:[
 	{
+	path:'/',
+	component:home
+	},{
 		path:'/home',
 		component:home
 	},
@@ -39,6 +38,4 @@ export default[
 	{
 		path:'/sort/list',
 		component:list
-	}
-	]
-}]
+	}]
