@@ -1,31 +1,41 @@
 <template>
 	<div class="list_head">
-		<a class="back_home">首页</a>
-		<span class="list_name">饮食<i class="fa fa-angle-down"></i></span>
+		<router-link to="/" class="back_home">首页</router-link>
+		<span class="list_name" @click="showList">{{name}}<i class="fa fa-angle-down"></i></span>
 
 		<!--列表-->
 		<div class="list_sort" v-if='isShow'>
 			<ul>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
-				<li>饮食</li>
+				<li v-for="(item,index) in list" @click="changeName(index)">{{item}}</li>
 			</ul>
 		</div>
 
 		<!--遮盖层-->
-		<div class="list_mask" v-if='isShow'></div>
+		<div class="list_mask" v-if='isShow' @click="showList"></div>
 	</div>
 </template>
+
+<script type="text/javascript">
+	export default{
+		name:'list_head',
+		data(){
+			return{
+				isShow:0,
+				list:["饮食1","饮食2","饮食3","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食","饮食"],
+				name:'饮食'
+			}
+		},
+		methods:{
+			changeName(index){
+				this.name=this.list[index];
+				this.isShow=0;
+			},
+			showList(){
+				this.isShow=!this.isShow;
+			}
+		}
+	}
+</script>
 
 <style type="text/css">
 	.list_head{
@@ -79,13 +89,3 @@
     	background-color: rgba(0,0,0,0.5);	}
 </style>
 
-<script type="text/javascript">
-	export default{
-		name:'list_head',
-		data(){
-			return{
-				isShow:0
-			}
-		}
-	}
-</script>

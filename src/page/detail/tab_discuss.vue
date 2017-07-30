@@ -44,6 +44,9 @@
 </template>
 
 <style type="text/css">
+	.tab_dicsuss{
+		padding-bottom: 2rem;
+	}
 	.discuss_details{
 		width: 100%;
 		box-sizing: border-box;

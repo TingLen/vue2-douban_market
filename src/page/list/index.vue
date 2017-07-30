@@ -5,128 +5,77 @@
 		<head-option></head-option>
 		<div class="list_details">
 			<ul class="clearfloat">
-				<li>
+			<div v-infinite-scroll="getProducks" infinite-scroll-distance="8">
+				<li v-for='produck in producksList'>
 					<div class="list_container">
 						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
+							<i class="fa fa-heart-o fa-lg" @click="changeHeart($event)"></i>
 						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
+						<a :href="produck.url+'/'+produck.id">
+						<img :src="produck.src">
 						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
+						<p>{{produck.title}}</p>
+						<span class="list_newPrice">{{produck.new_price}}</span>
+						<span class="list_oldPrice">{{produck.old_price}}</span>
 					</div>
 				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
-				<li>
-					<div class="list_container">
-						<span class="list_heart">
-							<i class="fa fa-heart-o fa-lg"></i>
-						</span>
-						<a href="">
-						<img src="../../assets/img/test_hot_product.jpg">
-						</a>
-						<p>PISN 高贵冷淡 四色不对称开叉高领百搭针织打底衫加厚套头毛衣女</p>
-						<span class="list_newPrice">￥229</span>
-						<span class="list_oldPrice">￥229</span>
-					</div>
-				</li>
+			</div>
 			</ul>
 		</div>
+		<loading v-if='isProducksScrollingTips'></loading>
+		<loading-end v-if='isProducksScrollEndTips'></loading-end>
 	</div>
 </template>
+
+<script type="text/javascript">
+import headerBar from './list_header.vue'
+import headNav from './list_nav.vue'
+import headOption from './list_option.vue'
+import loading from '../../components/loading.vue'
+import loadingEnd from '../../components/loadingend.vue'
+import {mapState,mapActions} from 'vuex'
+
+export default{
+	name:'list',
+	components:{
+		headerBar,
+		headOption,
+		headNav,
+		loading,
+		loadingEnd
+	},
+	data(){
+		return{
+			isTrue:false
+		}
+	},
+	computed:{
+		...mapState([
+			'producksList',
+			'isProducksScrolling',
+			'isProducksScrollingTips',
+			'isProducksScrollEndTips'
+			])
+	},
+	methods:{
+		...mapActions([
+			'getProducks'
+			]),
+		changeHeart(e){
+			if(this.isTrue){
+				e.target.className="fa fa-heart fa-lg";
+				this.isTrue=false;
+			}
+			else{
+				e.target.className="fa fa-heart-o fa-lg";
+				this.isTrue=true;
+			}
+			e.preventDefault();
+		}
+	}
+}
+	
+</script>
 
 <style type="text/css">
 	.list_details{
@@ -178,18 +127,3 @@
 	}
 </style>
 
-<script type="text/javascript">
-import headerBar from './list_header.vue'
-import headNav from './list_nav.vue'
-import headOption from './list_option.vue'
-
-export default{
-	name:'list',
-	components:{
-		headerBar,
-		headOption,
-		headNav
-	}
-}
-	
-</script>

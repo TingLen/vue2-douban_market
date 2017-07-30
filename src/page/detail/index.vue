@@ -1,7 +1,7 @@
 <template>
 	<div class="item_details">
 		<!-- 返回 -->
-		<span class="back_button fa fa-chevron-left fa-lg"></span>
+		<span class="back_button fa fa-chevron-left fa-lg" @click="goback"></span>
 		<!--banner-->
 		<swiper></swiper>
 		<!--价格、名称、运费-->
@@ -18,18 +18,13 @@
 			<div class="choose_info">
 				<label class="choose_title">颜色</label>
 				<div class="choose_style">
-					<span>白色</span>
-					<span>青色</span>
-					<span>紫色</span>
+					<span v-for="(item,index) in color" @click="chooseColor(index)" :class="{active:index===isColor}">{{item}}</span>
 				</div>
 			</div>
 			<div class="choose_info">
 				<label class="choose_title">尺寸</label>
 				<div class="choose_style">
-					<span>S</span>
-					<span>M</span>
-					<span>L</span>
-					<span>XL</span>
+					<span v-for="(item,index) in size" @click="chooseSize(index)" :class="{active:index===isSize}">{{item}}</span>
 				</div>
 			</div>
 		</div>
@@ -37,9 +32,9 @@
 		<div class="choose_number">
 			<label>数量</label>
 			<div class="num_option">
-				<span>-</span>
-				<input type="text" name="number">
-				<span>+</span>
+				<span :class="{active:num>1}" @click="minus">-</span>
+				<input type="text" name="number" v-model="num">
+				<span :class="{active:num>0}" @click="addition">+</span>
 			</div>
 		</div>
 
@@ -53,9 +48,9 @@
 
 		<!--选项卡-->
 		<div class="tabs">
-			<span>商品详情</span>
-			<span>评论</span>
-			<span>讨论</span>
+			<span @click="changeComponent('tabsDetail')">商品详情</span>
+			<span @click="changeComponent('tabsDiscuss')">评论</span>
+			<span @click="changeComponent('tabsRated')">讨论</span>
 		</div>
 
 		<!--选项卡内容-->
@@ -155,7 +150,9 @@
 		margin-right: 0.15rem;
 		margin-bottom: 0.15rem;
 	}
-
+	.choose_number .num_option span.active,.detail_choose .choose_info .choose_style span.active{
+		background-color: #68cb78;
+	}
 	.choose_number{
 		padding-right: 0.21rem;
 		padding-left: 0.21rem;
@@ -272,7 +269,32 @@
 		},
 		data(){
 			return{
-				componentId:'tabsDiscuss'
+				componentId:'tabsDetail',
+				isColor:0,
+				isSize:0,
+				color:["白色","青色","紫色"],
+				size:["S","M","L","XL","XXL"],
+				num:1
+			}
+		},
+		methods:{
+			chooseColor(index){
+				this.isColor=index;
+			},
+			chooseSize(index){
+				this.isSize=index;
+			},
+			addition(){
+				this.num++;
+			},
+			minus(){
+				this.num--;
+			},
+			changeComponent(component){
+				this.componentId=component;
+			},
+			goback(){
+				this.$router.go(-1);
 			}
 		}
 	}

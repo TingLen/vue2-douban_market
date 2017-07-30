@@ -32,10 +32,10 @@ export default[
 		component:login
 	},
 	{
-		path:'/detail',
+		path:'/detail/:id',
 		component:detail
 	},
 	{
-		path:'/sort/list',
+		path:'/sort/:id',
 		component:list
 	}]

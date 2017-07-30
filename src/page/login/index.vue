@@ -1,8 +1,8 @@
 <template>
-	<div class="login">
+	<div>
 		<!--登陆界面head-->
 		<div class="login_head">
-			<a class="login_headCancle">取消</a>
+			<router-link class="login_headCancle" to="/">取消</router-link>
 			<span class="login_headInfo">登陆豆瓣</span>
 		</div>
 
@@ -13,7 +13,7 @@
 					<input type="text" name="account" placeholder="邮箱/手机号/用户名">
 				</p>
 				<p class="login_formItem">
-					<input type="text" name="account" placeholder="密码">
+					<input type="password" name="passwords" placeholder="密码" maxlength="16">
 				</p>
 				<p class="login_formButton">
 					<button>登录</button>

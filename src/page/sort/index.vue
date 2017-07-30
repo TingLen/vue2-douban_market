@@ -4,7 +4,7 @@
 		<head-list></head-list>
 		<div class="sort_list">
 			<ul>
-				<li v-for='item in listName'><router-link to='item.url' :class="item.color">{{item.text}}</router-link></li>
+				<li v-for='item in listName'><router-link :to="item.url" :class="item.color">{{item.text}}</router-link></li>
 			</ul>
 		</div>
 	</div>
@@ -22,23 +22,23 @@
 		data(){
 			return{
 				listName:[{
-					text:'饮食',url:'/list/diet',color: 'red'
+					text:'饮食',url:"/sort/diet",color: 'red'
 				},{
-					text:'服装',url:'/list/clothing',color: 'blue'
+					text:'服装',url:'/sort/clothing',color: 'blue'
 				},{
-					text:'配饰',url:'/list/decorations',color: 'purple'
+					text:'配饰',url:'/sort/decorations',color: 'purple'
 				},{
-					text:'包袋',url:'/list/bag',color: 'sky'
+					text:'包袋',url:'/sort/bag',color: 'sky'
 				},{
-					text:'鞋靴',url:'/list/shoes',color: 'yellow'
+					text:'鞋靴',url:'/sort/shoes',color: 'yellow'
 				},{
-					text:'美容护肤',url:'/list/skinCare',color: 'pink'
+					text:'美容护肤',url:'/sort/skinCare',color: 'pink'
 				},{
-					text:'家居',url:'/list/furniture',color: 'grass'
+					text:'家居',url:'/sort/furniture',color: 'grass'
 				},{
-					text:'时间',url:'/list/clock',color: 'green'
+					text:'时间',url:'/sort/clock',color: 'green'
 				},{
-					text:'3C数码',url:'/list/3C',color: 'red'
+					text:'3C数码',url:'/sort/3C',color: 'red'
 				}]
 			}
 		}

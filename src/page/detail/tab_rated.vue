@@ -92,6 +92,9 @@
 </template>
 
 <style type="text/css">
+	.tab_rated{
+		padding-bottom: 2rem;
+	}
 	.rated_summary{
 		width: 100%;
 		text-align: center;
