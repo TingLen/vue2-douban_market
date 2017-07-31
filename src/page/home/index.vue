@@ -9,7 +9,7 @@
 			<li v-for="product in hotProducksList">
 				<div class="list_item">
 					<a :href="product.url+'/'+product.id" class="list_img">
-						<img :src="product.src">
+						<img v-lazy="product.src">
 						<p>{{product.title}}</p>
 						<span>{{product.new_price}}</span>
 						<span class="old_price">{{product.old_price}}</span>
@@ -31,7 +31,7 @@
 			<li v-for='item in shop.products'>
 				<div class="list_item">
 					<a :href="item.url+'/'+item.id" class="list_img">
-						<img :src="item.src">
+						<img v-lazy="item.src">
 						<p>{{item.title}}</p>
 						<span>{{item.newPrice}}</span>
 						<span class="old_price">{{item.oldPrice}}</span>

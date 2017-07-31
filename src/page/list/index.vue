@@ -12,7 +12,7 @@
 							<i class="fa fa-heart-o fa-lg" @click="changeHeart($event)"></i>
 						</span>
 						<a :href="produck.url+'/'+produck.id">
-						<img :src="produck.src">
+						<img v-lazy="produck.src">
 						</a>
 						<p>{{produck.title}}</p>
 						<span class="list_newPrice">{{produck.new_price}}</span>

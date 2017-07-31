@@ -8,7 +8,7 @@
 		<li v-for='item in myProducksList'>
 				<div class="list_item">
 					<a :href="item.url+'/'+item.id" class="list_img">
-						<img :src="item.src">
+						<img v-lazy="item.src">
 						<p>{{item.title}}</p>
 						<span>{{item.new_price}}</span>
 						<span class="old_price">{{item.old_price}}</span>

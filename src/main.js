@@ -6,11 +6,19 @@ import VueRouter from 'vue-router'
 import store from './store/'
 import routes from './router/index.js'
 import infiniteScroll from 'vue-infinite-scroll'
+//懒加载用的图片
+import def_lazy_img from './assets/img/loading.gif'
+//懒加载插件
+import VueLazyLoad from "vue-lazyload"
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(infiniteScroll)
+Vue.use(VueLazyLoad,{
+	loading: def_lazy_img,
+	preLoad:40
+})
 
 const router =new VueRouter({
 	routes
